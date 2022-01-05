@@ -2,10 +2,9 @@ package com.example.rxjava_sample
 
 import android.util.Log
 import com.example.rxjava_sample.MainActivity.Companion.TAG
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Observer
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.core.SingleObserver
+import com.example.rxjava_sample.data.User
+import com.example.rxjava_sample.data.mUserList
+import io.reactivex.rxjava3.core.*
 import io.reactivex.rxjava3.disposables.Disposable
 import java.lang.Exception
 
@@ -79,6 +78,39 @@ fun singleObservable() : SingleObserver<Int> {
 
         override fun onError(e: Throwable) {
             Log.d(TAG, "onError : $e")
+        }
+    }
+}
+
+fun createMaybeObservable() : Maybe<List<User>> {
+    return Maybe.create { emitter ->
+        try {
+            if (!emitter.isDisposed) {
+                emitter.onSuccess(mUserList)
+            }
+        }
+        catch (e : Exception) {
+            emitter.onError(e)
+        }
+    }
+}
+
+fun observableMaybeObservable() : MaybeObserver<List<User>> {
+    return object: MaybeObserver<List<User>> {
+        override fun onSubscribe(d: Disposable) {
+            Log.d(TAG, "onSubscribe")
+        }
+
+        override fun onSuccess(t: List<User>) {
+            Log.d(TAG, "onSuccess : $t")
+        }
+
+        override fun onError(e: Throwable) {
+            Log.d(TAG, "onError : $e")
+        }
+
+        override fun onComplete() {
+            Log.d(TAG, "onComplete")
         }
 
     }

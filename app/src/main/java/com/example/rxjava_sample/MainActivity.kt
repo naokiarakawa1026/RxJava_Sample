@@ -26,7 +26,21 @@ class MainActivity : AppCompatActivity() {
 //        createObservable().subscribe(observer())
 
 
-        createSingleObservable().subscribe(singleObservable())
+//        // Single
+//        createSingleObservable().subscribe(singleObservable())
+//
+//        createSingleObservable().subscribe(
+//            {
+//                Log.d(TAG, "onSuccess : $it")
+//            },
+//            {
+//                Log.d(TAG, "onError : $it")
+//            }
+//        )
+
+        // Maybe
+//        createMaybeObservable().subscribe(observableMaybeObservable())
+
 
 
 
