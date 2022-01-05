@@ -1,0 +1,40 @@
+package com.example.rxjava_sample
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+
+//        // Observable, Observer
+//        createObservable().subscribe(
+//            {
+//                Log.d(TAG, "onNext : $it")
+//            },
+//            {
+//                Log.d(TAG, "onError : $it")
+//            },
+//            {
+//                Log.d(TAG, "onComplete")
+//            }
+//        )
+//
+//        createObservable().subscribe(observer())
+
+
+        createSingleObservable().subscribe(singleObservable())
+
+
+
+    }
+
+
+
+    companion object {
+        const val TAG = "MainActivityRxJava"
+    }
+}
